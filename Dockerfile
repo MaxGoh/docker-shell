@@ -6,6 +6,7 @@ RUN apk update && apk add -U --no-cache neovim zsh git git-perl bash ncurses les
 # Install docker-compose
 RUN pip install docker-compose
 RUN pip install neovim pep8
+RUN pip3 install neovim
 
 # Install jQ!
 RUN wget https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -O /bin/jq && chmod +x /bin/jq
@@ -30,11 +31,9 @@ RUN curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.s
 RUN curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 COPY init.vim .config/nvim/init.vim
-
-#COPY vimrc .config/nvim/init.vim
-#COPY basic.vim .basic.vim
-#COPY plugin.vim .plugin.vim
-#COPY extended.vim .extended.vim
+COPY basic.vim .basic.vim
+COPY plugin.vim .plugin.vim
+COPY extended.vim .extended.vim
 
 # Install plugins
 RUN nvim +PlugInstall +qall >> /dev/null

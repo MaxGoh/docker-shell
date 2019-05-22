@@ -1,4 +1,3 @@
-set number
-set rnu
-
-syntax enable
+source ~/.basic.vim
+source ~/.plugin.vim
+source ~/.extended.vim
